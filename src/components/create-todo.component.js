@@ -18,12 +18,37 @@ const CreateTodo = (props) => {
     setTodoPriority(e.target.value)
   }
 
+  const postNewTodo = async (data) => {
+    const response = await fetch('http://localhost:4000/todos/add', {
+      method: 'POST',
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+      body: JSON.stringify(data)
+    })
+    const json = await response.json()
+    console.log(json)
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(`Form submitted:`);
-    console.log(`Todo Description: ${todoDescription}`);
-    console.log(`Todo Responsible: ${todoResponsible}`);
-    console.log(`Todo Priority: ${todoPriority}`);
+    // console.log(`Form submitted:`);
+    // console.log(`Todo Description: ${todoDescription}`);
+    // console.log(`Todo Responsible: ${todoResponsible}`);
+    // console.log(`Todo Priority: ${todoPriority}`);
+
+    const newTodo = {
+      todoDescription: todoDescription,
+      todoResponsible: todoResponsible,
+      todoPriority: todoPriority,
+      todoCompleted: todoCompleted
+    }
+
+    postNewTodo(newTodo)
+
+
+
     setTodoDescription('')
     setTodoResponsible('')
     setTodoPriority('')
