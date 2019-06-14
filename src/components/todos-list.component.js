@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import '../index.css'
 
 
 const TodosList = (props) => {
@@ -8,9 +9,9 @@ const TodosList = (props) => {
 
   const Todo = props => (
       <tr>
-          <td>{props.todo.todoDescription}</td>
-          <td>{props.todo.todoResponsible}</td>
-          <td>{props.todo.todoPriority}</td>
+          <td className={props.todo.todoCompleted ? 'completed' : '' }>{props.todo.todoDescription}</td>
+          <td className={props.todo.todoCompleted ? 'completed' : '' }>{props.todo.todoResponsible}</td>
+          <td className={props.todo.todoCompleted ? 'completed' : '' }>{props.todo.todoPriority}</td>
           <td>
               <Link to={"/edit/"+props.todo._id}>Edit</Link>
           </td>
