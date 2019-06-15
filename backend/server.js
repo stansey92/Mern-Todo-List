@@ -40,6 +40,15 @@ todoRoutes.route('/:id').get(function(req, res) {
     })
 })
 
+//delete one
+todoRoutes.route('/:id').delete(function(req, res) {
+  let id = req.params.id
+  Todo.findByIdAndRemove(id)
+  .then(() => {
+    res.send('Todo deleted')
+  }).catch(err => res.send(err))
+})
+
 //patch
 todoRoutes.route('/update/:id').post(function(req, res) {
     Todo.findById(req.params.id, function(err, todo) {
